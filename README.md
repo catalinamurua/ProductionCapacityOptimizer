@@ -1,4 +1,4 @@
-# Proyecto Optimizador
+# Proyecto Optimizacion
 <p align="justify">
 Este proyecto es una aplicación web desarrollada en Django que implementa un modelo de optimización enfocado en maximizar los ingresos diarios de una empresa manufacturera. El modelo considera restricciones de capacidad basadas en el tiempo disponible en dos máquinas de producción.
 </p>
