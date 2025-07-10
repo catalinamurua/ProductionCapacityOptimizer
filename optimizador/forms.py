@@ -27,7 +27,6 @@ class UploadCSVForm(forms.Form):
         min_value=0
     )
 
-    # Nuevos campos para tiempos de producción (opcional)
     override_prod_a_time_m1 = forms.FloatField(
         label='Product A Production Time Machine 1 (opcional)',
         required=False,
