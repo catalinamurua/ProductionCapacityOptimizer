@@ -1,0 +1,22 @@
+# Entorno virtual
+env/
+venv/
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+
+# Archivos de Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Archivos temporales de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de salida y logs
+output/
+*.log
+
+# Archivos de VS Code
+.vscode/
+

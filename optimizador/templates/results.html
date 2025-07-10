@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Parámetros de entrada:</h2>
+
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; margin-bottom: 20px;">
+    <thead>
+        <tr>
+            <th>Parámetro</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key, value in data_row.items %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Resultados de la Optimización</h2>
+
+<ul>
+    <li><strong>Unidades de Producto A:</strong> {{ results.product_a_units }}</li>
+    <li><strong>Unidades de Producto B:</strong> {{ results.product_b_units }}</li>
+    <li><strong>Ingresos Totales:</strong> ${{ results.total_revenue }}</li>
+</ul>
+
+<h3>Visualizaciones:</h3>
+<img src="{% static 'Cantidad_Producto.png' %}" alt="Unidades producidas" style="max-width: 100%; height: auto;">
+<img src="{% static 'Capacidad.png' %}" alt="Uso capacidad por máquina" style="max-width: 100%; height: auto;">
+
+<br><a href="{% url 'upload_csv' %}">Subir otro archivo</a>
+{% endblock %}

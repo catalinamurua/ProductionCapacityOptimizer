@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subir archivo CSV</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 1em;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 6px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Subir archivo CSV</h1>
+
+    {% if success %}
+        <p style="color:green;">{{ success }}</p>
+    {% endif %}
+
+    {% if tabla %}
+        <h2>Contenido del archivo CSV:</h2>
+        <div>
+            {{ tabla|safe }}
+        </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Campo para subir CSV -->
+        <p>
+            {{ form.csv_file.label_tag }}<br>
+            {{ form.csv_file }}
+        </p>
+
+        <!-- Campos opcionales para sobrescribir parámetros -->
+        <p>
+            <label for="id_override_machine_1_hours">Horas disponibles máquina 1 (opcional):</label><br>
+            {{ form.override_machine_1_hours }}
+        </p>
+        <p>
+            <label for="id_override_machine_2_hours">Horas disponibles máquina 2 (opcional):</label><br>
+            {{ form.override_machine_2_hours }}
+        </p>
+        <p>
+            <label for="id_override_price_a">Precio Producto A (opcional):</label><br>
+            {{ form.override_price_a }}
+        </p>
+        <p>
+            <label for="id_override_price_b">Precio Producto B (opcional):</label><br>
+            {{ form.override_price_b }}
+        </p>
+        <p>
+            <label for="id_override_prod_a_time_m1">Tiempo producción Producto A Máquina 1 (opcional):</label><br>
+            {{ form.override_prod_a_time_m1 }}
+        </p>
+        <p>
+            <label for="id_override_prod_a_time_m2">Tiempo producción Producto A Máquina 2 (opcional):</label><br>
+            {{ form.override_prod_a_time_m2 }}
+        </p>
+        <p>
+            <label for="id_override_prod_b_time_m1">Tiempo producción Producto B Máquina 1 (opcional):</label><br>
+            {{ form.override_prod_b_time_m1 }}
+        </p>
+        <p>
+            <label for="id_override_prod_b_time_m2">Tiempo producción Producto B Máquina 2 (opcional):</label><br>
+            {{ form.override_prod_b_time_m2 }}
+        </p>
+
+
+        <button type="submit" style="background-color: green; color: white; padding: 8px 16px; border: none; border-radius: 4px;">
+            Subir archivo
+        </button>
+
+    </form>
+
+    {% if form.errors %}
+        <ul style="color:red;">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
+
+
+
+
