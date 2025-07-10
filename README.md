@@ -117,8 +117,8 @@ A continuación se muestra un ejemplo de cómo podrían verse los resultados.
 
   #### Visualizaciones:
 <p float="left">
-  <img src="Optimizador/static/Cantidad_Producto.png" width="45%" />
-  <img src="Optimizador/static/Capacidad.png" width="45%" />
+  <img src="optimizador/static/Cantidad_Producto.png" width="45%" />
+  <img src="optimizador/static/Capacidad.png" width="45%" />
 </p>
 
 ---
