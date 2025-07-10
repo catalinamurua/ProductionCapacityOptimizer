@@ -11,7 +11,7 @@ class OptimizationModel:
         self.result = {}
 
     def build_model(self):
-        # Crear problema de maximización
+        # Crea problema de maximización
         prob = LpProblem("Maximize_Revenue", LpMaximize)
 
         # Variables: cantidad a producir de A y B (enteras o continuas, según contexto)
@@ -47,7 +47,7 @@ class OptimizationModel:
         if self.model is None:
             self.build_model()
 
-        # Resolver el modelo
+        # Resuelve el modelo
         status = self.model.solve()
 
         if LpStatus[self.model.status] != 'Optimal':
@@ -55,7 +55,7 @@ class OptimizationModel:
 
         x_a, x_b = self.variables
 
-        # Guardar resultados
+        # Guarda resultados
         self.result = {
             'Product_A_units': x_a.varValue,
             'Product_B_units': x_b.varValue,

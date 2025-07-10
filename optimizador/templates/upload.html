@@ -18,6 +18,11 @@
         th {
             background-color: #f2f2f2;
         }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -25,6 +30,13 @@
 
     {% if success %}
         <p style="color:green;">{{ success }}</p>
+    {% endif %}
+
+    <!-- Mensaje de error general enviado desde la vista -->
+    {% if error_message %}
+        <div class="error-message">
+            {{ error_message }}
+        </div>
     {% endif %}
 
     {% if tabla %}
@@ -77,7 +89,6 @@
             {{ form.override_prod_b_time_m2 }}
         </p>
 
-
         <button type="submit" style="background-color: green; color: white; padding: 8px 16px; border: none; border-radius: 4px;">
             Subir archivo
         </button>
@@ -98,7 +109,6 @@
     {% endif %}
 </body>
 </html>
-
 
 
 

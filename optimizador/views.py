@@ -5,9 +5,11 @@ from .forms import UploadCSVForm
 from .services.data_loader import DataLoader
 from .services.optimization import OptimizationModel
 from .services.results_handler import ResultsHandler
+from .services.validation import ValidacionParametros  # <-- Importa tu clase de validación
 import os
 from django.conf import settings
 import pandas as pd
+
 def upload_csv(request):
     if request.method == 'POST':
         form = UploadCSVForm(request.POST, request.FILES)
@@ -18,6 +20,7 @@ def upload_csv(request):
             
             row = data.iloc[0].copy()  # Copiamos la fila para modificar
 
+            # Sobrescribir con valores opcionales si vienen
             if form.cleaned_data.get('override_machine_1_hours') is not None:
                 row['Machine_1_Available_Hours'] = form.cleaned_data['override_machine_1_hours']
 
@@ -42,8 +45,18 @@ def upload_csv(request):
             if form.cleaned_data.get('override_prod_b_time_m2') is not None:
                 row['Product_B_Production_Time_Machine_2'] = form.cleaned_data['override_prod_b_time_m2']
 
+            # VALIDACION CON TU CLASE
+            try:
+                validator = ValidacionParametros(row)
+                validator.ejecutar_validaciones()
+            except ValueError as e:
+                # Si falla, mostrar el error en upload.html junto al form
+                return render(request, 'upload.html', {
+                    'form': form,
+                    'error_message': str(e),
+                })
 
-            # Construye el modelo y resuelve
+            # Si pasa validación, construir modelo y resolver
             model = OptimizationModel(data=pd.DataFrame([row]))
             model.build_model()
             solution = model.solve()
@@ -57,7 +70,7 @@ def upload_csv(request):
             capacity_image_path = os.path.join(settings.BASE_DIR, 'Optimizador/static', 'Capacidad.png')
             handler.generate_capacity_usage_chart(capacity_image_path)
 
-            # Crea un diccionario explícito con los parámetros usados (los que realmente entraron)
+            # Diccionario explícito con parámetros usados
             final_params = {
                 'Horas disponibles Máquina 1': row['Machine_1_Available_Hours'],
                 'Horas disponibles Máquina 2': row['Machine_2_Available_Hours'],
@@ -73,7 +86,7 @@ def upload_csv(request):
                 'results': formatted,
                 'chart_url': 'static/Cantidad_Producto.png',
                 'capacity_chart_url': 'static/Capacidad.png',
-                'data_row': final_params,  # Diccionario explícito
+                'data_row': final_params,
             })
     else:
         form = UploadCSVForm()

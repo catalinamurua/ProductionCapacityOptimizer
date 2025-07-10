@@ -1,4 +1,4 @@
-# Proyecto Optimizacion
+# Proyecto ProductionCapacityOptimizer
 <p align="justify">
 Este proyecto es una aplicación web desarrollada en Django que implementa un modelo de optimización enfocado en maximizar los ingresos diarios de una empresa manufacturera. El modelo considera restricciones de capacidad basadas en el tiempo disponible en dos máquinas de producción.
 </p>
@@ -7,7 +7,7 @@ Este proyecto es una aplicación web desarrollada en Django que implementa un mo
 
 ## Descripción del Modelo de Optimización
 <p align="justify">
-El modelo busca maximizar los ingresos diarios sujetos a las restricciones de tiempo disponible en dos máquinas de producción. Los parámetros de entrada incluyen precios de productos, tiempos de producción por máquina y horas disponibles para cada máquina. Los datos pueden ser cargados mediante un archivo CSV o modificados a través de campos opcionales en la interfaz web.
+El modelo busca maximizar los ingresos diarios sujetos a las restricciones de tiempo disponible en dos máquinas de producción. Los parámetros de entrada incluyen precios de productos, tiempos de producción por máquina y horas disponibles para cada máquina. Los datos pueden ser cargados mediante un archivo CSV y modificados a través de campos opcionales en la interfaz web.
 </p>
 
 ---
@@ -29,8 +29,8 @@ Todas las dependencias necesarias están listadas en el archivo `requirements.tx
 1. **Clonar el repositorio:**
 
    ```bash
-   git clone https://github.com/catalinamurua/Optimizacion.git
-   cd optimizador
+   git clone https://github.com/catalinamurua/ProductionCapacityOptimizer.git
+   cd ProductionCapacityOptimizer
     ```
 
 2. **Crear y activar un entorno virtual (recomendado):**
@@ -80,12 +80,13 @@ Todas las dependencias necesarias están listadas en el archivo `requirements.tx
   - Horas disponibles máquina 1 y 2
   - Precio Producto A y B
   - Tiempos de producción para Producto A y B en ambas máquinas
+  Si los parámetros ingresados son inconsistentes o generan restricciones irreales, se mostrará una advertencia.
 - Presiona el botón **"Subir archivo"** para procesar los datos y ejecutar el modelo.
 - La página de resultados mostrará:
   - Los parámetros usados en la optimización.
   - Los resultados optimizados (unidades producidas por producto e ingresos totales).
   - Gráficos con las unidades producidas y el uso de capacidad por máquina.
-- Si deseas realizar el cálculo con nuevos parámetros, haz clic en el botón **"Subir otro archivo"**.
+- Para realizar un nuevo cálculo con otros parámetros, haz clic en el botón **"Subir otro archivo"**.
 
 ---
 ## Ejemplos de Resultados
@@ -112,7 +113,7 @@ A continuación se muestra un ejemplo de cómo podrían verse los resultados.
   #### Resultados de la Optimización:
 
   - **Unidades de Producto A:** 2  
-  - **Unidades de Producto B:** 3  
+  - **Unidades de Producto B:** 4  
   - **Ingresos Totales:** \$520
 
   #### Visualizaciones:
@@ -147,12 +148,13 @@ Para ejecutar las pruebas unitarias, usa:
 
 - El archivo CSV debe tener el formato y columnas esperadas para que la carga y validación funcionen correctamente.
 
-- Si no se carga ningún archivo CSV y no se rellenan campos opcionales, el formulario mostrará un error solicitando subir un archivo.
+- Si no se carga ningún archivo CSV, el formulario mostrará un error solicitando subir un archivo.
 
 - El modelo depende de que los datos sean coherentes para obtener resultados válidos.
 
 ---
 ## Contacto
 
-Para dudas, sugerencias o contribuciones, puedes contactarme a través de [catalina.muruua@gmail.com].
+Para dudas, sugerencias o contribuciones, puedes contactarme a través de **[catalina.muruua (at) gmail.com]**
+
 
