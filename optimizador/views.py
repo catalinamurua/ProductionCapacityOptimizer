@@ -45,7 +45,7 @@ def upload_csv(request):
             if form.cleaned_data.get('override_prod_b_time_m2') is not None:
                 row['Product_B_Production_Time_Machine_2'] = form.cleaned_data['override_prod_b_time_m2']
 
-            # VALIDACION CON TU CLASE
+            # Validacion de Parametros del modelo
             try:
                 validator = ValidacionParametros(row)
                 validator.ejecutar_validaciones()
