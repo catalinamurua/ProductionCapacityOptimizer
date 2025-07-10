@@ -19,6 +19,7 @@ El modelo busca maximizar los ingresos diarios sujetos a las restricciones de ti
 - pandas
 - matplotlib
 - PuLP
+- pytest
 
 Todas las dependencias necesarias están listadas en el archivo `requirements.txt`.
 
